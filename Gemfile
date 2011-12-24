@@ -5,7 +5,7 @@ gem 'rails', '3.1.3'
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
   gem 'coffee-rails', "~> 3.1.0"
-  gem 'uglifier'
+  gem 'uglifier', '1.2.0'
 end
 
 gem 'jquery-rails'
@@ -21,9 +21,10 @@ end
 
 group :development, :test do
   gem "rspec-rails", "~> 2.7"
-  gem 'sqlite3'
+  gem 'sqlite3', '1.3.5'
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', '0.12.0'
+  gem 'thin', '1.3.1'
 end
