@@ -11,7 +11,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'devise', '1.5.3'
+gem 'haml', '3.1.4'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
