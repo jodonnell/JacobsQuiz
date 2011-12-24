@@ -1,1 +1,88 @@
-hi
+= stylesheet_link_tag "termlib/term_styles"
+= javascript_include_tag "termlib/termlib"
+
+%div{:id => "termDiv", :style => "position:absolute; visibility: hidden; z-index:1;"}
+
+:javascript
+  var term;
+  
+  function termOpen() {
+  	if ((!term) || (term.closed)) {
+  		term = new Terminal(
+  			{
+  				x: 20,
+  				y: 20,
+  				termDiv: 'termDiv',
+  				bgColor: '#232e45',
+  				greeting: 'hi',
+  				handler: termHandler,
+  				exitHandler: termExitHandler,
+  				wrapping: true,
+  				rows: 50,
+  				cols: 190
+  			}
+  		);
+  		term.open();
+  		
+  		// dimm UI text
+  		var mainPane = (document.getElementById)?
+  			document.getElementById('mainPane') : document.all.mainPane;
+  		if (mainPane) mainPane.className = 'lh15 dimmed';
+  	}
+  }
+  
+  function termExitHandler() {
+  	// reset the UI
+  	var mainPane = (document.getElementById)?
+  		document.getElementById('mainPane') : document.all.mainPane;
+  	if (mainPane) mainPane.className = 'lh15';
+  }
+  
+  function termHandler() {
+  	// default handler + exit
+  	this.newLine();
+  	if (this.lineBuffer.match(/^\s*exit\s*$/i)) {
+  		this.close();
+  		return;
+  	}
+  	else if (this.lineBuffer.match(/^\s*tests\s+-w\s*$/i)) {
+  		this.write('starting tests with wrap %+ion%-i:');
+  		this.newLine();
+  		this.newLine();
+  		this.write(texts);
+  	}
+  	else if (this.lineBuffer.match(/^\s*tests\s*$/i)) {
+  		this.wrapOff();
+  		this.write('starting tests with wrap %+ioff%-i:');
+  		this.newLine();
+  		this.newLine();
+  		this.write(texts);
+  		this.wrapOn();
+  	}
+  	else if (this.lineBuffer.match(/^\s*kant\s*$/i)) {
+  		this.write(kant, true);
+  		return;
+  	}
+  	else if (this.lineBuffer.match(/^\s*help\s*$/i)) {
+  		this.clear();
+  		this.write(help);
+  	}
+  	else if (this.lineBuffer != '') {
+  		// echo with write for wrapping, but escape any mark-up
+  		this.write('You wrote: '+this.lineBuffer.replace(/%/g, '%%'));
+  		this.newLine();
+  	}
+  	this.prompt();
+  }
+  
+  
+  // demo hooks
+  
+  function test(command) {
+  	if ((!term) || (term.closed)) {
+  		alert('Please open the terminal first!');
+  		return;
+  	}
+  	TermGlobals.importEachLine( command );
+  }
+  $(document).ready(function() {termOpen()})
