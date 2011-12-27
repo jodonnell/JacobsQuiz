@@ -1,5 +1,5 @@
 var term;
-
+var defaultCommands = {"git branch": "* master\n"};
 function termOpen() {
     if ((!term) || (term.closed)) {
         term = new Terminal(
@@ -53,8 +53,8 @@ function termHandler() {
             var flag = this.argv[this.argc++];
             this.write(recognizedCommands[this.lineBuffer]);
         }
-        else {
-            this.write(problemDescription);
+        else if (this.lineBuffer in defaultCommands) {
+            this.write(defaultCommands[this.lineBuffer]);
         }
     }
     this.prompt();
