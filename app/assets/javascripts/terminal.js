@@ -49,8 +49,6 @@ function termHandler() {
             this.clear();
         }
         else if (this.lineBuffer in recognizedCommands) {
-            var subCommand = this.argv[this.argc++];
-            var flag = this.argv[this.argc++];
             this.write(recognizedCommands[this.lineBuffer]);
         }
         else if (this.lineBuffer in defaultCommands) {
