@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'devise', '1.5.3'
 gem 'haml', '3.1.4'
 gem 'heroku', '2.17.0'
+gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem "mongoid", "~> 2.3"
 gem "bson_ext", "~> 1.4"
