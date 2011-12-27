@@ -8,7 +8,7 @@ function termOpen() {
                 y: 20,
                 termDiv: 'termDiv',
                 bgColor: '#232e45',
-                greeting: problemDescription,
+                greeting: '',
                 handler: termHandler,
                 exitHandler: termExitHandler,
                 wrapping: true,

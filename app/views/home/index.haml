@@ -6,5 +6,4 @@
 %div{:id => "termDiv", :style => "position:absolute; visibility: hidden; z-index:1;"}
 
 :javascript
-  var problemDescription = '#{@question.description}';
   var recognizedCommands = #{@question.git_interactions_json};
