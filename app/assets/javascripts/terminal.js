@@ -5,14 +5,14 @@ function termOpen() {
         term = new Terminal(
             {
                 x: 20,
-                y: 20,
+                y: 40,
                 termDiv: 'termDiv',
                 bgColor: '#232e45',
                 greeting: '',
                 handler: termHandler,
                 exitHandler: termExitHandler,
                 wrapping: true,
-                rows: 50,
+                rows: 40,
                 cols: 190
             }
         );

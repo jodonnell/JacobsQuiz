@@ -3,7 +3,12 @@
 = javascript_include_tag "termlib/termlib_parser"
 = javascript_include_tag "terminal"
 
+= @question.description
+
 %div{:id => "termDiv", :style => "position:absolute; visibility: hidden; z-index:1;"}
+%div{:id => "helpText", :style => "position:absolute; z-index:1; left: 20px; top: 620px;"}
+  help, clear, next
+
 
 :javascript
   var recognizedCommands = #{@question.git_interactions_json};
