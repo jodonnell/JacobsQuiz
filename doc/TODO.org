@@ -4,3 +4,4 @@
 ** Way to advance to next question
 ** Win text
 ** Help text
+** clean input (extra spaces?)
